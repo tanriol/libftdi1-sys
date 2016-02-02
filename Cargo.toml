@@ -1,0 +1,17 @@
+[package]
+name = "libftdi1-sys"
+version = "0.1.0"
+authors = ["Denis Lisov <dennis.lissov@gmail.com>"]
+keywords = ["bindings", "hardware","ftdi", "libftdi1"]
+description = "FFI bindings for libftdi1"
+license = "MIT"
+homepage = "https://github.com/tanriol/libftdi1-sys"
+repository = "https://github.com/tanriol/libftdi1-sys"
+
+build = "build.rs"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+pkg-config = "0.3"

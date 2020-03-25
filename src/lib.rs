@@ -8,7 +8,6 @@
 #![allow(non_snake_case)]
 extern crate libc;
 
-
 #[derive(Clone, Copy)]
 #[repr(u32)]
 pub enum ftdi_chip_type {
@@ -85,7 +84,7 @@ pub enum ftdi_module_detach_mode {
     DONT_DETACH_SIO_MODULE = 1,
 }
 
-pub enum libusb_transfer { }
+pub enum libusb_transfer {}
 
 #[repr(C)]
 #[derive(Copy)]
@@ -108,11 +107,11 @@ impl ::std::default::Default for ftdi_transfer_control {
     }
 }
 
-pub enum libusb_context { }
+pub enum libusb_context {}
 
-pub enum libusb_device_handle { }
+pub enum libusb_device_handle {}
 
-pub enum ftdi_eeprom { }
+pub enum ftdi_eeprom {}
 
 #[repr(C)]
 #[derive(Copy)]
@@ -211,7 +210,7 @@ pub enum ftdi_eeprom_value {
     RELEASE_NUMBER = 55,
 }
 
-pub enum libusb_device { }
+pub enum libusb_device {}
 
 #[repr(C)]
 #[derive(Copy)]
@@ -314,11 +313,12 @@ impl ::std::default::Default for FTDIProgressInfo {
     }
 }
 
-pub type FTDIStreamCallback = unsafe extern "C" fn(buffer: *mut u8,
-                                                   length: ::std::os::raw::c_int,
-                                                   progress: *mut FTDIProgressInfo,
-                                                   userdata: *mut ::std::os::raw::c_void)
-                                                   -> ::std::os::raw::c_int;
+pub type FTDIStreamCallback = unsafe extern "C" fn(
+    buffer: *mut u8,
+    length: ::std::os::raw::c_int,
+    progress: *mut FTDIProgressInfo,
+    userdata: *mut ::std::os::raw::c_void,
+) -> ::std::os::raw::c_int;
 
 #[repr(C)]
 #[derive(Copy)]
@@ -344,187 +344,228 @@ impl ::std::default::Default for ftdi_version_info {
 extern "C" {
     pub fn ftdi_init(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
     pub fn ftdi_new() -> *mut ftdi_context;
-    pub fn ftdi_set_interface(ftdi: *mut ftdi_context,
-                              interface: ftdi_interface)
-                              -> ::std::os::raw::c_int;
+    pub fn ftdi_set_interface(
+        ftdi: *mut ftdi_context,
+        interface: ftdi_interface,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_deinit(ftdi: *mut ftdi_context);
     pub fn ftdi_free(ftdi: *mut ftdi_context);
     pub fn ftdi_set_usbdev(ftdi: *mut ftdi_context, usbdev: *mut libusb_device_handle);
     pub fn ftdi_get_library_version() -> ftdi_version_info;
-    pub fn ftdi_usb_find_all(ftdi: *mut ftdi_context,
-                             devlist: *mut *mut ftdi_device_list,
-                             vendor: ::std::os::raw::c_int,
-                             product: ::std::os::raw::c_int)
-                             -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_find_all(
+        ftdi: *mut ftdi_context,
+        devlist: *mut *mut ftdi_device_list,
+        vendor: ::std::os::raw::c_int,
+        product: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_list_free(devlist: *mut *mut ftdi_device_list);
     pub fn ftdi_list_free2(devlist: *mut ftdi_device_list);
-    pub fn ftdi_usb_get_strings(ftdi: *mut ftdi_context,
-                                dev: *mut libusb_device,
-                                manufacturer: *mut ::std::os::raw::c_char,
-                                mnf_len: ::std::os::raw::c_int,
-                                description: *mut ::std::os::raw::c_char,
-                                desc_len: ::std::os::raw::c_int,
-                                serial: *mut ::std::os::raw::c_char,
-                                serial_len: ::std::os::raw::c_int)
-                                -> ::std::os::raw::c_int;
-    pub fn ftdi_eeprom_set_strings(ftdi: *mut ftdi_context,
-                                   manufacturer: *mut ::std::os::raw::c_char,
-                                   product: *mut ::std::os::raw::c_char,
-                                   serial: *mut ::std::os::raw::c_char)
-                                   -> ::std::os::raw::c_int;
-    pub fn ftdi_usb_open(ftdi: *mut ftdi_context,
-                         vendor: ::std::os::raw::c_int,
-                         product: ::std::os::raw::c_int)
-                         -> ::std::os::raw::c_int;
-    pub fn ftdi_usb_open_desc(ftdi: *mut ftdi_context,
-                              vendor: ::std::os::raw::c_int,
-                              product: ::std::os::raw::c_int,
-                              description: *const ::std::os::raw::c_char,
-                              serial: *const ::std::os::raw::c_char)
-                              -> ::std::os::raw::c_int;
-    pub fn ftdi_usb_open_desc_index(ftdi: *mut ftdi_context,
-                                    vendor: ::std::os::raw::c_int,
-                                    product: ::std::os::raw::c_int,
-                                    description: *const ::std::os::raw::c_char,
-                                    serial: *const ::std::os::raw::c_char,
-                                    index: ::std::os::raw::c_uint)
-                                    -> ::std::os::raw::c_int;
-    pub fn ftdi_usb_open_dev(ftdi: *mut ftdi_context,
-                             dev: *mut libusb_device)
-                             -> ::std::os::raw::c_int;
-    pub fn ftdi_usb_open_string(ftdi: *mut ftdi_context,
-                                description: *const ::std::os::raw::c_char)
-                                -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_get_strings(
+        ftdi: *mut ftdi_context,
+        dev: *mut libusb_device,
+        manufacturer: *mut ::std::os::raw::c_char,
+        mnf_len: ::std::os::raw::c_int,
+        description: *mut ::std::os::raw::c_char,
+        desc_len: ::std::os::raw::c_int,
+        serial: *mut ::std::os::raw::c_char,
+        serial_len: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_eeprom_set_strings(
+        ftdi: *mut ftdi_context,
+        manufacturer: *mut ::std::os::raw::c_char,
+        product: *mut ::std::os::raw::c_char,
+        serial: *mut ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_open(
+        ftdi: *mut ftdi_context,
+        vendor: ::std::os::raw::c_int,
+        product: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_open_desc(
+        ftdi: *mut ftdi_context,
+        vendor: ::std::os::raw::c_int,
+        product: ::std::os::raw::c_int,
+        description: *const ::std::os::raw::c_char,
+        serial: *const ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_open_desc_index(
+        ftdi: *mut ftdi_context,
+        vendor: ::std::os::raw::c_int,
+        product: ::std::os::raw::c_int,
+        description: *const ::std::os::raw::c_char,
+        serial: *const ::std::os::raw::c_char,
+        index: ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_open_dev(
+        ftdi: *mut ftdi_context,
+        dev: *mut libusb_device,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_usb_open_string(
+        ftdi: *mut ftdi_context,
+        description: *const ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_usb_close(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
     pub fn ftdi_usb_reset(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
     pub fn ftdi_usb_purge_rx_buffer(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
     pub fn ftdi_usb_purge_tx_buffer(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
     pub fn ftdi_usb_purge_buffers(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
-    pub fn ftdi_set_baudrate(ftdi: *mut ftdi_context,
-                             baudrate: ::std::os::raw::c_int)
-                             -> ::std::os::raw::c_int;
-    pub fn ftdi_set_line_property(ftdi: *mut ftdi_context,
-                                  bits: ftdi_bits_type,
-                                  sbit: ftdi_stopbits_type,
-                                  parity: ftdi_parity_type)
-                                  -> ::std::os::raw::c_int;
-    pub fn ftdi_set_line_property2(ftdi: *mut ftdi_context,
-                                   bits: ftdi_bits_type,
-                                   sbit: ftdi_stopbits_type,
-                                   parity: ftdi_parity_type,
-                                   break_type: ftdi_break_type)
-                                   -> ::std::os::raw::c_int;
-    pub fn ftdi_read_data(ftdi: *mut ftdi_context,
-                          buf: *mut ::std::os::raw::c_uchar,
-                          size: ::std::os::raw::c_int)
-                          -> ::std::os::raw::c_int;
-    pub fn ftdi_read_data_set_chunksize(ftdi: *mut ftdi_context,
-                                        chunksize: ::std::os::raw::c_uint)
-                                        -> ::std::os::raw::c_int;
-    pub fn ftdi_read_data_get_chunksize(ftdi: *mut ftdi_context,
-                                        chunksize: *mut ::std::os::raw::c_uint)
-                                        -> ::std::os::raw::c_int;
-    pub fn ftdi_write_data(ftdi: *mut ftdi_context,
-                           buf: *const ::std::os::raw::c_uchar,
-                           size: ::std::os::raw::c_int)
-                           -> ::std::os::raw::c_int;
-    pub fn ftdi_write_data_set_chunksize(ftdi: *mut ftdi_context,
-                                         chunksize: ::std::os::raw::c_uint)
-                                         -> ::std::os::raw::c_int;
-    pub fn ftdi_write_data_get_chunksize(ftdi: *mut ftdi_context,
-                                         chunksize: *mut ::std::os::raw::c_uint)
-                                         -> ::std::os::raw::c_int;
-    pub fn ftdi_readstream(ftdi: *mut ftdi_context,
-                           callback: *mut FTDIStreamCallback,
-                           userdata: *mut ::std::os::raw::c_void,
-                           packetsPerTransfer: ::std::os::raw::c_int,
-                           numTransfers: ::std::os::raw::c_int)
-                           -> ::std::os::raw::c_int;
-    pub fn ftdi_write_data_submit(ftdi: *mut ftdi_context,
-                                  buf: *mut ::std::os::raw::c_uchar,
-                                  size: ::std::os::raw::c_int)
-                                  -> *mut ftdi_transfer_control;
-    pub fn ftdi_read_data_submit(ftdi: *mut ftdi_context,
-                                 buf: *mut ::std::os::raw::c_uchar,
-                                 size: ::std::os::raw::c_int)
-                                 -> *mut ftdi_transfer_control;
+    pub fn ftdi_set_baudrate(
+        ftdi: *mut ftdi_context,
+        baudrate: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_line_property(
+        ftdi: *mut ftdi_context,
+        bits: ftdi_bits_type,
+        sbit: ftdi_stopbits_type,
+        parity: ftdi_parity_type,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_line_property2(
+        ftdi: *mut ftdi_context,
+        bits: ftdi_bits_type,
+        sbit: ftdi_stopbits_type,
+        parity: ftdi_parity_type,
+        break_type: ftdi_break_type,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_read_data(
+        ftdi: *mut ftdi_context,
+        buf: *mut ::std::os::raw::c_uchar,
+        size: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_read_data_set_chunksize(
+        ftdi: *mut ftdi_context,
+        chunksize: ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_read_data_get_chunksize(
+        ftdi: *mut ftdi_context,
+        chunksize: *mut ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_write_data(
+        ftdi: *mut ftdi_context,
+        buf: *const ::std::os::raw::c_uchar,
+        size: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_write_data_set_chunksize(
+        ftdi: *mut ftdi_context,
+        chunksize: ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_write_data_get_chunksize(
+        ftdi: *mut ftdi_context,
+        chunksize: *mut ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_readstream(
+        ftdi: *mut ftdi_context,
+        callback: *mut FTDIStreamCallback,
+        userdata: *mut ::std::os::raw::c_void,
+        packetsPerTransfer: ::std::os::raw::c_int,
+        numTransfers: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_write_data_submit(
+        ftdi: *mut ftdi_context,
+        buf: *mut ::std::os::raw::c_uchar,
+        size: ::std::os::raw::c_int,
+    ) -> *mut ftdi_transfer_control;
+    pub fn ftdi_read_data_submit(
+        ftdi: *mut ftdi_context,
+        buf: *mut ::std::os::raw::c_uchar,
+        size: ::std::os::raw::c_int,
+    ) -> *mut ftdi_transfer_control;
     pub fn ftdi_transfer_data_done(tc: *mut ftdi_transfer_control) -> ::std::os::raw::c_int;
-    pub fn ftdi_set_bitmode(ftdi: *mut ftdi_context,
-                            bitmask: ::std::os::raw::c_uchar,
-                            mode: ::std::os::raw::c_uchar)
-                            -> ::std::os::raw::c_int;
+    pub fn ftdi_set_bitmode(
+        ftdi: *mut ftdi_context,
+        bitmask: ::std::os::raw::c_uchar,
+        mode: ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_disable_bitbang(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
-    pub fn ftdi_read_pins(ftdi: *mut ftdi_context,
-                          pins: *mut ::std::os::raw::c_uchar)
-                          -> ::std::os::raw::c_int;
-    pub fn ftdi_set_latency_timer(ftdi: *mut ftdi_context,
-                                  latency: ::std::os::raw::c_uchar)
-                                  -> ::std::os::raw::c_int;
-    pub fn ftdi_get_latency_timer(ftdi: *mut ftdi_context,
-                                  latency: *mut ::std::os::raw::c_uchar)
-                                  -> ::std::os::raw::c_int;
-    pub fn ftdi_poll_modem_status(ftdi: *mut ftdi_context,
-                                  status: *mut ::std::os::raw::c_ushort)
-                                  -> ::std::os::raw::c_int;
-    pub fn ftdi_setflowctrl(ftdi: *mut ftdi_context,
-                            flowctrl: ::std::os::raw::c_int)
-                            -> ::std::os::raw::c_int;
-    pub fn ftdi_setdtr_rts(ftdi: *mut ftdi_context,
-                           dtr: ::std::os::raw::c_int,
-                           rts: ::std::os::raw::c_int)
-                           -> ::std::os::raw::c_int;
-    pub fn ftdi_setdtr(ftdi: *mut ftdi_context,
-                       state: ::std::os::raw::c_int)
-                       -> ::std::os::raw::c_int;
-    pub fn ftdi_setrts(ftdi: *mut ftdi_context,
-                       state: ::std::os::raw::c_int)
-                       -> ::std::os::raw::c_int;
-    pub fn ftdi_set_event_char(ftdi: *mut ftdi_context,
-                               eventch: ::std::os::raw::c_uchar,
-                               enable: ::std::os::raw::c_uchar)
-                               -> ::std::os::raw::c_int;
-    pub fn ftdi_set_error_char(ftdi: *mut ftdi_context,
-                               errorch: ::std::os::raw::c_uchar,
-                               enable: ::std::os::raw::c_uchar)
-                               -> ::std::os::raw::c_int;
-    pub fn ftdi_eeprom_initdefaults(ftdi: *mut ftdi_context,
-                                    manufacturer: *mut ::std::os::raw::c_char,
-                                    product: *mut ::std::os::raw::c_char,
-                                    serial: *mut ::std::os::raw::c_char)
-                                    -> ::std::os::raw::c_int;
+    pub fn ftdi_read_pins(
+        ftdi: *mut ftdi_context,
+        pins: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_latency_timer(
+        ftdi: *mut ftdi_context,
+        latency: ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_get_latency_timer(
+        ftdi: *mut ftdi_context,
+        latency: *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_poll_modem_status(
+        ftdi: *mut ftdi_context,
+        status: *mut ::std::os::raw::c_ushort,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_setflowctrl(
+        ftdi: *mut ftdi_context,
+        flowctrl: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_setdtr_rts(
+        ftdi: *mut ftdi_context,
+        dtr: ::std::os::raw::c_int,
+        rts: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_setdtr(
+        ftdi: *mut ftdi_context,
+        state: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_setrts(
+        ftdi: *mut ftdi_context,
+        state: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_event_char(
+        ftdi: *mut ftdi_context,
+        eventch: ::std::os::raw::c_uchar,
+        enable: ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_error_char(
+        ftdi: *mut ftdi_context,
+        errorch: ::std::os::raw::c_uchar,
+        enable: ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_eeprom_initdefaults(
+        ftdi: *mut ftdi_context,
+        manufacturer: *mut ::std::os::raw::c_char,
+        product: *mut ::std::os::raw::c_char,
+        serial: *mut ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_eeprom_build(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
-    pub fn ftdi_eeprom_decode(ftdi: *mut ftdi_context,
-                              verbose: ::std::os::raw::c_int)
-                              -> ::std::os::raw::c_int;
-    pub fn ftdi_get_eeprom_value(ftdi: *mut ftdi_context,
-                                 value_name: ftdi_eeprom_value,
-                                 value: *mut ::std::os::raw::c_int)
-                                 -> ::std::os::raw::c_int;
-    pub fn ftdi_set_eeprom_value(ftdi: *mut ftdi_context,
-                                 value_name: ftdi_eeprom_value,
-                                 value: ::std::os::raw::c_int)
-                                 -> ::std::os::raw::c_int;
-    pub fn ftdi_get_eeprom_buf(ftdi: *mut ftdi_context,
-                               buf: *mut ::std::os::raw::c_uchar,
-                               size: ::std::os::raw::c_int)
-                               -> ::std::os::raw::c_int;
-    pub fn ftdi_set_eeprom_buf(ftdi: *mut ftdi_context,
-                               buf: *const ::std::os::raw::c_uchar,
-                               size: ::std::os::raw::c_int)
-                               -> ::std::os::raw::c_int;
+    pub fn ftdi_eeprom_decode(
+        ftdi: *mut ftdi_context,
+        verbose: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_get_eeprom_value(
+        ftdi: *mut ftdi_context,
+        value_name: ftdi_eeprom_value,
+        value: *mut ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_eeprom_value(
+        ftdi: *mut ftdi_context,
+        value_name: ftdi_eeprom_value,
+        value: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_get_eeprom_buf(
+        ftdi: *mut ftdi_context,
+        buf: *mut ::std::os::raw::c_uchar,
+        size: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_set_eeprom_buf(
+        ftdi: *mut ftdi_context,
+        buf: *const ::std::os::raw::c_uchar,
+        size: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_read_eeprom(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
-    pub fn ftdi_read_chipid(ftdi: *mut ftdi_context,
-                            chipid: *mut ::std::os::raw::c_uint)
-                            -> ::std::os::raw::c_int;
+    pub fn ftdi_read_chipid(
+        ftdi: *mut ftdi_context,
+        chipid: *mut ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_write_eeprom(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
     pub fn ftdi_erase_eeprom(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
-    pub fn ftdi_read_eeprom_location(ftdi: *mut ftdi_context,
-                                     eeprom_addr: ::std::os::raw::c_int,
-                                     eeprom_val: *mut ::std::os::raw::c_ushort)
-                                     -> ::std::os::raw::c_int;
-    pub fn ftdi_write_eeprom_location(ftdi: *mut ftdi_context,
-                                      eeprom_addr: ::std::os::raw::c_int,
-                                      eeprom_val: ::std::os::raw::c_ushort)
-                                      -> ::std::os::raw::c_int;
+    pub fn ftdi_read_eeprom_location(
+        ftdi: *mut ftdi_context,
+        eeprom_addr: ::std::os::raw::c_int,
+        eeprom_val: *mut ::std::os::raw::c_ushort,
+    ) -> ::std::os::raw::c_int;
+    pub fn ftdi_write_eeprom_location(
+        ftdi: *mut ftdi_context,
+        eeprom_addr: ::std::os::raw::c_int,
+        eeprom_val: ::std::os::raw::c_ushort,
+    ) -> ::std::os::raw::c_int;
     pub fn ftdi_get_error_string(ftdi: *mut ftdi_context) -> *mut ::std::os::raw::c_char;
 }

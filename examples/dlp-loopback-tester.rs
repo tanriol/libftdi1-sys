@@ -66,9 +66,11 @@ fn main() {
             let reply = read_unchecked(context, 100);
             let complement = 255 - num;
             if reply != vec![complement] {
-                println!("Wrong complement reply {:?} (expected {:?}",
-                         reply,
-                         vec![complement]);
+                println!(
+                    "Wrong complement reply {:?} (expected {:?}",
+                    reply,
+                    vec![complement]
+                );
             }
         }
         println!("Testing finished");

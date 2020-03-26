@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 fn main() {
     #[cfg(not(windows))]
-    pkg_config::find_library("libftdi1").unwrap();
+    pkg_config::Config::new().atleast_version("1.4").probe("libftdi1").unwrap();
     #[cfg(windows)]
     vcpkg::find_package("libftdi1").unwrap();
 

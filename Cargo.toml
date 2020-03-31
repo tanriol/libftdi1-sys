@@ -11,13 +11,22 @@ edition = "2018"
 
 build = "build.rs"
 
+[features]
+default = ["bindgen"]
+
 [dependencies]
+cfg-if = "0.1.10"
 libc = "0.2"
+
+[build-dependencies]
+cfg-if = "0.1.10"
 
 [target.'cfg(not(all(windows, target_env="msvc")))'.build-dependencies]
 pkg-config = "0.3"
-bindgen = "0.53.2"
 
 [target.'cfg(all(windows, target_env="msvc"))'.build-dependencies]
 vcpkg = "0.2"
-bindgen = "0.53.2"
+
+[build-dependencies.bindgen]
+version = "0.53.2"
+optional = true

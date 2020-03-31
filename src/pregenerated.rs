@@ -2,82 +2,138 @@
 
 pub type timeval = libc::timeval;
 
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_chip_type {
-    TYPE_AM = 0,
-    TYPE_BM = 1,
-    TYPE_2232C = 2,
-    TYPE_R = 3,
-    TYPE_2232H = 4,
-    TYPE_4232H = 5,
-    TYPE_232H = 6,
-    TYPE_230X = 7,
+impl ftdi_chip_type {
+    pub const TYPE_AM: ftdi_chip_type = ftdi_chip_type(0);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_parity_type {
-    NONE = 0,
-    ODD = 1,
-    EVEN = 2,
-    MARK = 3,
-    SPACE = 4,
+impl ftdi_chip_type {
+    pub const TYPE_BM: ftdi_chip_type = ftdi_chip_type(1);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_stopbits_type {
-    STOP_BIT_1 = 0,
-    STOP_BIT_15 = 1,
-    STOP_BIT_2 = 2,
+impl ftdi_chip_type {
+    pub const TYPE_2232C: ftdi_chip_type = ftdi_chip_type(2);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_bits_type {
-    BITS_7 = 7,
-    BITS_8 = 8,
+impl ftdi_chip_type {
+    pub const TYPE_R: ftdi_chip_type = ftdi_chip_type(3);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_break_type {
-    BREAK_OFF = 0,
-    BREAK_ON = 1,
+impl ftdi_chip_type {
+    pub const TYPE_2232H: ftdi_chip_type = ftdi_chip_type(4);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_mpsse_mode {
-    BITMODE_RESET = 0,
-    BITMODE_BITBANG = 1,
-    BITMODE_MPSSE = 2,
-    BITMODE_SYNCBB = 4,
-    BITMODE_MCU = 8,
-    BITMODE_OPTO = 16,
-    BITMODE_CBUS = 32,
-    BITMODE_SYNCFF = 64,
-    BITMODE_FT1284 = 128,
+impl ftdi_chip_type {
+    pub const TYPE_4232H: ftdi_chip_type = ftdi_chip_type(5);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_interface {
-    INTERFACE_ANY = 0,
-    INTERFACE_A = 1,
-    INTERFACE_B = 2,
-    INTERFACE_C = 3,
-    INTERFACE_D = 4,
+impl ftdi_chip_type {
+    pub const TYPE_232H: ftdi_chip_type = ftdi_chip_type(6);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_module_detach_mode {
-    AUTO_DETACH_SIO_MODULE = 0,
-    DONT_DETACH_SIO_MODULE = 1,
+impl ftdi_chip_type {
+    pub const TYPE_230X: ftdi_chip_type = ftdi_chip_type(7);
 }
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_chip_type(pub u32);
+impl ftdi_parity_type {
+    pub const NONE: ftdi_parity_type = ftdi_parity_type(0);
+}
+impl ftdi_parity_type {
+    pub const ODD: ftdi_parity_type = ftdi_parity_type(1);
+}
+impl ftdi_parity_type {
+    pub const EVEN: ftdi_parity_type = ftdi_parity_type(2);
+}
+impl ftdi_parity_type {
+    pub const MARK: ftdi_parity_type = ftdi_parity_type(3);
+}
+impl ftdi_parity_type {
+    pub const SPACE: ftdi_parity_type = ftdi_parity_type(4);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_parity_type(pub u32);
+impl ftdi_stopbits_type {
+    pub const STOP_BIT_1: ftdi_stopbits_type = ftdi_stopbits_type(0);
+}
+impl ftdi_stopbits_type {
+    pub const STOP_BIT_15: ftdi_stopbits_type = ftdi_stopbits_type(1);
+}
+impl ftdi_stopbits_type {
+    pub const STOP_BIT_2: ftdi_stopbits_type = ftdi_stopbits_type(2);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_stopbits_type(pub u32);
+impl ftdi_bits_type {
+    pub const BITS_7: ftdi_bits_type = ftdi_bits_type(7);
+}
+impl ftdi_bits_type {
+    pub const BITS_8: ftdi_bits_type = ftdi_bits_type(8);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_bits_type(pub u32);
+impl ftdi_break_type {
+    pub const BREAK_OFF: ftdi_break_type = ftdi_break_type(0);
+}
+impl ftdi_break_type {
+    pub const BREAK_ON: ftdi_break_type = ftdi_break_type(1);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_break_type(pub u32);
+impl ftdi_mpsse_mode {
+    pub const BITMODE_RESET: ftdi_mpsse_mode = ftdi_mpsse_mode(0);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_BITBANG: ftdi_mpsse_mode = ftdi_mpsse_mode(1);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_MPSSE: ftdi_mpsse_mode = ftdi_mpsse_mode(2);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_SYNCBB: ftdi_mpsse_mode = ftdi_mpsse_mode(4);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_MCU: ftdi_mpsse_mode = ftdi_mpsse_mode(8);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_OPTO: ftdi_mpsse_mode = ftdi_mpsse_mode(16);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_CBUS: ftdi_mpsse_mode = ftdi_mpsse_mode(32);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_SYNCFF: ftdi_mpsse_mode = ftdi_mpsse_mode(64);
+}
+impl ftdi_mpsse_mode {
+    pub const BITMODE_FT1284: ftdi_mpsse_mode = ftdi_mpsse_mode(128);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_mpsse_mode(pub u32);
+impl ftdi_interface {
+    pub const INTERFACE_ANY: ftdi_interface = ftdi_interface(0);
+}
+impl ftdi_interface {
+    pub const INTERFACE_A: ftdi_interface = ftdi_interface(1);
+}
+impl ftdi_interface {
+    pub const INTERFACE_B: ftdi_interface = ftdi_interface(2);
+}
+impl ftdi_interface {
+    pub const INTERFACE_C: ftdi_interface = ftdi_interface(3);
+}
+impl ftdi_interface {
+    pub const INTERFACE_D: ftdi_interface = ftdi_interface(4);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_interface(pub u32);
+impl ftdi_module_detach_mode {
+    pub const AUTO_DETACH_SIO_MODULE: ftdi_module_detach_mode = ftdi_module_detach_mode(0);
+}
+impl ftdi_module_detach_mode {
+    pub const DONT_DETACH_SIO_MODULE: ftdi_module_detach_mode = ftdi_module_detach_mode(1);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_module_detach_mode(pub u32);
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct ftdi_transfer_control {
@@ -113,138 +169,342 @@ pub struct ftdi_context {
     pub error_str: *const ::std::os::raw::c_char,
     pub module_detach_mode: ftdi_module_detach_mode,
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_eeprom_value {
-    VENDOR_ID = 0,
-    PRODUCT_ID = 1,
-    SELF_POWERED = 2,
-    REMOTE_WAKEUP = 3,
-    IS_NOT_PNP = 4,
-    SUSPEND_DBUS7 = 5,
-    IN_IS_ISOCHRONOUS = 6,
-    OUT_IS_ISOCHRONOUS = 7,
-    SUSPEND_PULL_DOWNS = 8,
-    USE_SERIAL = 9,
-    USB_VERSION = 10,
-    USE_USB_VERSION = 11,
-    MAX_POWER = 12,
-    CHANNEL_A_TYPE = 13,
-    CHANNEL_B_TYPE = 14,
-    CHANNEL_A_DRIVER = 15,
-    CHANNEL_B_DRIVER = 16,
-    CBUS_FUNCTION_0 = 17,
-    CBUS_FUNCTION_1 = 18,
-    CBUS_FUNCTION_2 = 19,
-    CBUS_FUNCTION_3 = 20,
-    CBUS_FUNCTION_4 = 21,
-    CBUS_FUNCTION_5 = 22,
-    CBUS_FUNCTION_6 = 23,
-    CBUS_FUNCTION_7 = 24,
-    CBUS_FUNCTION_8 = 25,
-    CBUS_FUNCTION_9 = 26,
-    HIGH_CURRENT = 27,
-    HIGH_CURRENT_A = 28,
-    HIGH_CURRENT_B = 29,
-    INVERT = 30,
-    GROUP0_DRIVE = 31,
-    GROUP0_SCHMITT = 32,
-    GROUP0_SLEW = 33,
-    GROUP1_DRIVE = 34,
-    GROUP1_SCHMITT = 35,
-    GROUP1_SLEW = 36,
-    GROUP2_DRIVE = 37,
-    GROUP2_SCHMITT = 38,
-    GROUP2_SLEW = 39,
-    GROUP3_DRIVE = 40,
-    GROUP3_SCHMITT = 41,
-    GROUP3_SLEW = 42,
-    CHIP_SIZE = 43,
-    CHIP_TYPE = 44,
-    POWER_SAVE = 45,
-    CLOCK_POLARITY = 46,
-    DATA_ORDER = 47,
-    FLOW_CONTROL = 48,
-    CHANNEL_C_DRIVER = 49,
-    CHANNEL_D_DRIVER = 50,
-    CHANNEL_A_RS485 = 51,
-    CHANNEL_B_RS485 = 52,
-    CHANNEL_C_RS485 = 53,
-    CHANNEL_D_RS485 = 54,
-    RELEASE_NUMBER = 55,
-    EXTERNAL_OSCILLATOR = 56,
-    USER_DATA_ADDR = 57,
+impl ftdi_eeprom_value {
+    pub const VENDOR_ID: ftdi_eeprom_value = ftdi_eeprom_value(0);
 }
+impl ftdi_eeprom_value {
+    pub const PRODUCT_ID: ftdi_eeprom_value = ftdi_eeprom_value(1);
+}
+impl ftdi_eeprom_value {
+    pub const SELF_POWERED: ftdi_eeprom_value = ftdi_eeprom_value(2);
+}
+impl ftdi_eeprom_value {
+    pub const REMOTE_WAKEUP: ftdi_eeprom_value = ftdi_eeprom_value(3);
+}
+impl ftdi_eeprom_value {
+    pub const IS_NOT_PNP: ftdi_eeprom_value = ftdi_eeprom_value(4);
+}
+impl ftdi_eeprom_value {
+    pub const SUSPEND_DBUS7: ftdi_eeprom_value = ftdi_eeprom_value(5);
+}
+impl ftdi_eeprom_value {
+    pub const IN_IS_ISOCHRONOUS: ftdi_eeprom_value = ftdi_eeprom_value(6);
+}
+impl ftdi_eeprom_value {
+    pub const OUT_IS_ISOCHRONOUS: ftdi_eeprom_value = ftdi_eeprom_value(7);
+}
+impl ftdi_eeprom_value {
+    pub const SUSPEND_PULL_DOWNS: ftdi_eeprom_value = ftdi_eeprom_value(8);
+}
+impl ftdi_eeprom_value {
+    pub const USE_SERIAL: ftdi_eeprom_value = ftdi_eeprom_value(9);
+}
+impl ftdi_eeprom_value {
+    pub const USB_VERSION: ftdi_eeprom_value = ftdi_eeprom_value(10);
+}
+impl ftdi_eeprom_value {
+    pub const USE_USB_VERSION: ftdi_eeprom_value = ftdi_eeprom_value(11);
+}
+impl ftdi_eeprom_value {
+    pub const MAX_POWER: ftdi_eeprom_value = ftdi_eeprom_value(12);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_A_TYPE: ftdi_eeprom_value = ftdi_eeprom_value(13);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_B_TYPE: ftdi_eeprom_value = ftdi_eeprom_value(14);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_A_DRIVER: ftdi_eeprom_value = ftdi_eeprom_value(15);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_B_DRIVER: ftdi_eeprom_value = ftdi_eeprom_value(16);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_0: ftdi_eeprom_value = ftdi_eeprom_value(17);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_1: ftdi_eeprom_value = ftdi_eeprom_value(18);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_2: ftdi_eeprom_value = ftdi_eeprom_value(19);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_3: ftdi_eeprom_value = ftdi_eeprom_value(20);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_4: ftdi_eeprom_value = ftdi_eeprom_value(21);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_5: ftdi_eeprom_value = ftdi_eeprom_value(22);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_6: ftdi_eeprom_value = ftdi_eeprom_value(23);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_7: ftdi_eeprom_value = ftdi_eeprom_value(24);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_8: ftdi_eeprom_value = ftdi_eeprom_value(25);
+}
+impl ftdi_eeprom_value {
+    pub const CBUS_FUNCTION_9: ftdi_eeprom_value = ftdi_eeprom_value(26);
+}
+impl ftdi_eeprom_value {
+    pub const HIGH_CURRENT: ftdi_eeprom_value = ftdi_eeprom_value(27);
+}
+impl ftdi_eeprom_value {
+    pub const HIGH_CURRENT_A: ftdi_eeprom_value = ftdi_eeprom_value(28);
+}
+impl ftdi_eeprom_value {
+    pub const HIGH_CURRENT_B: ftdi_eeprom_value = ftdi_eeprom_value(29);
+}
+impl ftdi_eeprom_value {
+    pub const INVERT: ftdi_eeprom_value = ftdi_eeprom_value(30);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP0_DRIVE: ftdi_eeprom_value = ftdi_eeprom_value(31);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP0_SCHMITT: ftdi_eeprom_value = ftdi_eeprom_value(32);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP0_SLEW: ftdi_eeprom_value = ftdi_eeprom_value(33);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP1_DRIVE: ftdi_eeprom_value = ftdi_eeprom_value(34);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP1_SCHMITT: ftdi_eeprom_value = ftdi_eeprom_value(35);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP1_SLEW: ftdi_eeprom_value = ftdi_eeprom_value(36);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP2_DRIVE: ftdi_eeprom_value = ftdi_eeprom_value(37);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP2_SCHMITT: ftdi_eeprom_value = ftdi_eeprom_value(38);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP2_SLEW: ftdi_eeprom_value = ftdi_eeprom_value(39);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP3_DRIVE: ftdi_eeprom_value = ftdi_eeprom_value(40);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP3_SCHMITT: ftdi_eeprom_value = ftdi_eeprom_value(41);
+}
+impl ftdi_eeprom_value {
+    pub const GROUP3_SLEW: ftdi_eeprom_value = ftdi_eeprom_value(42);
+}
+impl ftdi_eeprom_value {
+    pub const CHIP_SIZE: ftdi_eeprom_value = ftdi_eeprom_value(43);
+}
+impl ftdi_eeprom_value {
+    pub const CHIP_TYPE: ftdi_eeprom_value = ftdi_eeprom_value(44);
+}
+impl ftdi_eeprom_value {
+    pub const POWER_SAVE: ftdi_eeprom_value = ftdi_eeprom_value(45);
+}
+impl ftdi_eeprom_value {
+    pub const CLOCK_POLARITY: ftdi_eeprom_value = ftdi_eeprom_value(46);
+}
+impl ftdi_eeprom_value {
+    pub const DATA_ORDER: ftdi_eeprom_value = ftdi_eeprom_value(47);
+}
+impl ftdi_eeprom_value {
+    pub const FLOW_CONTROL: ftdi_eeprom_value = ftdi_eeprom_value(48);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_C_DRIVER: ftdi_eeprom_value = ftdi_eeprom_value(49);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_D_DRIVER: ftdi_eeprom_value = ftdi_eeprom_value(50);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_A_RS485: ftdi_eeprom_value = ftdi_eeprom_value(51);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_B_RS485: ftdi_eeprom_value = ftdi_eeprom_value(52);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_C_RS485: ftdi_eeprom_value = ftdi_eeprom_value(53);
+}
+impl ftdi_eeprom_value {
+    pub const CHANNEL_D_RS485: ftdi_eeprom_value = ftdi_eeprom_value(54);
+}
+impl ftdi_eeprom_value {
+    pub const RELEASE_NUMBER: ftdi_eeprom_value = ftdi_eeprom_value(55);
+}
+impl ftdi_eeprom_value {
+    pub const EXTERNAL_OSCILLATOR: ftdi_eeprom_value = ftdi_eeprom_value(56);
+}
+impl ftdi_eeprom_value {
+    pub const USER_DATA_ADDR: ftdi_eeprom_value = ftdi_eeprom_value(57);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_eeprom_value(pub u32);
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct ftdi_device_list {
     pub next: *mut ftdi_device_list,
     pub dev: *mut libusb_device,
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_cbus_func {
-    CBUS_TXDEN = 0,
-    CBUS_PWREN = 1,
-    CBUS_RXLED = 2,
-    CBUS_TXLED = 3,
-    CBUS_TXRXLED = 4,
-    CBUS_SLEEP = 5,
-    CBUS_CLK48 = 6,
-    CBUS_CLK24 = 7,
-    CBUS_CLK12 = 8,
-    CBUS_CLK6 = 9,
-    CBUS_IOMODE = 10,
-    CBUS_BB_WR = 11,
-    CBUS_BB_RD = 12,
+impl ftdi_cbus_func {
+    pub const CBUS_TXDEN: ftdi_cbus_func = ftdi_cbus_func(0);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_cbush_func {
-    CBUSH_TRISTATE = 0,
-    CBUSH_TXLED = 1,
-    CBUSH_RXLED = 2,
-    CBUSH_TXRXLED = 3,
-    CBUSH_PWREN = 4,
-    CBUSH_SLEEP = 5,
-    CBUSH_DRIVE_0 = 6,
-    CBUSH_DRIVE1 = 7,
-    CBUSH_IOMODE = 8,
-    CBUSH_TXDEN = 9,
-    CBUSH_CLK30 = 10,
-    CBUSH_CLK15 = 11,
-    CBUSH_CLK7_5 = 12,
+impl ftdi_cbus_func {
+    pub const CBUS_PWREN: ftdi_cbus_func = ftdi_cbus_func(1);
 }
-#[repr(u32)]
-#[non_exhaustive]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ftdi_cbusx_func {
-    CBUSX_TRISTATE = 0,
-    CBUSX_TXLED = 1,
-    CBUSX_RXLED = 2,
-    CBUSX_TXRXLED = 3,
-    CBUSX_PWREN = 4,
-    CBUSX_SLEEP = 5,
-    CBUSX_DRIVE_0 = 6,
-    CBUSX_DRIVE1 = 7,
-    CBUSX_IOMODE = 8,
-    CBUSX_TXDEN = 9,
-    CBUSX_CLK24 = 10,
-    CBUSX_CLK12 = 11,
-    CBUSX_CLK6 = 12,
-    CBUSX_BAT_DETECT = 13,
-    CBUSX_BAT_DETECT_NEG = 14,
-    CBUSX_I2C_TXE = 15,
-    CBUSX_I2C_RXF = 16,
-    CBUSX_VBUS_SENSE = 17,
-    CBUSX_BB_WR = 18,
-    CBUSX_BB_RD = 19,
-    CBUSX_TIME_STAMP = 20,
-    CBUSX_AWAKE = 21,
+impl ftdi_cbus_func {
+    pub const CBUS_RXLED: ftdi_cbus_func = ftdi_cbus_func(2);
 }
+impl ftdi_cbus_func {
+    pub const CBUS_TXLED: ftdi_cbus_func = ftdi_cbus_func(3);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_TXRXLED: ftdi_cbus_func = ftdi_cbus_func(4);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_SLEEP: ftdi_cbus_func = ftdi_cbus_func(5);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_CLK48: ftdi_cbus_func = ftdi_cbus_func(6);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_CLK24: ftdi_cbus_func = ftdi_cbus_func(7);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_CLK12: ftdi_cbus_func = ftdi_cbus_func(8);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_CLK6: ftdi_cbus_func = ftdi_cbus_func(9);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_IOMODE: ftdi_cbus_func = ftdi_cbus_func(10);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_BB_WR: ftdi_cbus_func = ftdi_cbus_func(11);
+}
+impl ftdi_cbus_func {
+    pub const CBUS_BB_RD: ftdi_cbus_func = ftdi_cbus_func(12);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_cbus_func(pub u32);
+impl ftdi_cbush_func {
+    pub const CBUSH_TRISTATE: ftdi_cbush_func = ftdi_cbush_func(0);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_TXLED: ftdi_cbush_func = ftdi_cbush_func(1);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_RXLED: ftdi_cbush_func = ftdi_cbush_func(2);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_TXRXLED: ftdi_cbush_func = ftdi_cbush_func(3);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_PWREN: ftdi_cbush_func = ftdi_cbush_func(4);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_SLEEP: ftdi_cbush_func = ftdi_cbush_func(5);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_DRIVE_0: ftdi_cbush_func = ftdi_cbush_func(6);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_DRIVE1: ftdi_cbush_func = ftdi_cbush_func(7);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_IOMODE: ftdi_cbush_func = ftdi_cbush_func(8);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_TXDEN: ftdi_cbush_func = ftdi_cbush_func(9);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_CLK30: ftdi_cbush_func = ftdi_cbush_func(10);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_CLK15: ftdi_cbush_func = ftdi_cbush_func(11);
+}
+impl ftdi_cbush_func {
+    pub const CBUSH_CLK7_5: ftdi_cbush_func = ftdi_cbush_func(12);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_cbush_func(pub u32);
+impl ftdi_cbusx_func {
+    pub const CBUSX_TRISTATE: ftdi_cbusx_func = ftdi_cbusx_func(0);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_TXLED: ftdi_cbusx_func = ftdi_cbusx_func(1);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_RXLED: ftdi_cbusx_func = ftdi_cbusx_func(2);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_TXRXLED: ftdi_cbusx_func = ftdi_cbusx_func(3);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_PWREN: ftdi_cbusx_func = ftdi_cbusx_func(4);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_SLEEP: ftdi_cbusx_func = ftdi_cbusx_func(5);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_DRIVE_0: ftdi_cbusx_func = ftdi_cbusx_func(6);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_DRIVE1: ftdi_cbusx_func = ftdi_cbusx_func(7);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_IOMODE: ftdi_cbusx_func = ftdi_cbusx_func(8);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_TXDEN: ftdi_cbusx_func = ftdi_cbusx_func(9);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_CLK24: ftdi_cbusx_func = ftdi_cbusx_func(10);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_CLK12: ftdi_cbusx_func = ftdi_cbusx_func(11);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_CLK6: ftdi_cbusx_func = ftdi_cbusx_func(12);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_BAT_DETECT: ftdi_cbusx_func = ftdi_cbusx_func(13);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_BAT_DETECT_NEG: ftdi_cbusx_func = ftdi_cbusx_func(14);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_I2C_TXE: ftdi_cbusx_func = ftdi_cbusx_func(15);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_I2C_RXF: ftdi_cbusx_func = ftdi_cbusx_func(16);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_VBUS_SENSE: ftdi_cbusx_func = ftdi_cbusx_func(17);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_BB_WR: ftdi_cbusx_func = ftdi_cbusx_func(18);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_BB_RD: ftdi_cbusx_func = ftdi_cbusx_func(19);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_TIME_STAMP: ftdi_cbusx_func = ftdi_cbusx_func(20);
+}
+impl ftdi_cbusx_func {
+    pub const CBUSX_AWAKE: ftdi_cbusx_func = ftdi_cbusx_func(21);
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct ftdi_cbusx_func(pub u32);
 #[repr(C)]
 pub struct size_and_time {
     pub totalBytes: u64,

@@ -20,7 +20,7 @@ fn main() {
         if #[cfg(feature = "bindgen")] {
             let bindings = bindgen::Builder::default()
                 .header("wrapper.h")
-                .default_enum_style(bindgen::EnumVariation::Rust{ non_exhaustive : true })
+                .default_enum_style(bindgen::EnumVariation::NewType{ is_bitfield : false })
                 .rustfmt_bindings(true)
                 .whitelist_function("ftdi_.*")
                 .whitelist_type("ftdi_.*")

@@ -11,7 +11,6 @@ cfg_if::cfg_if! {
     if #[cfg(feature = "bindgen")] {
         include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
     } else {
-        mod pregenerated;
-        pub use pregenerated::*;
+        include!("pregenerated.rs");
     }
 }

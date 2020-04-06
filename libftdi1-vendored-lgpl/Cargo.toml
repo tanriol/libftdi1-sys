@@ -1,0 +1,35 @@
+[package]
+name = "libftdi1-vendored-lgpl"
+version = "1.0.0-alpha1"
+authors = [
+    "Denis Lisov <dennis.lissov@gmail.com>",
+    "The libFTDI developers",
+]
+edition = "2018"
+description = "The vendored copy of libftdi1 for use by libftdi1-sys. You should not use this crate directly."
+repository = "https://github.com/tanriol/libftdi1-sys/"
+license = "LGPL-2.1"
+include = [
+    "/Cargo.toml",
+    "/lgpl-2.1.txt",
+    "/README.md",
+    "/*.rs",
+    "/*.h",
+    "/libftdi/src/*.c",
+    "/libftdi/src/*.h",
+]
+publish = false # for now
+
+[badges]
+maintenance = { status = "passively-maintained" }
+
+[lib]
+path = "lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[build-dependencies]
+cc = "1.0.50"
+pkg-config = "0.3.7"

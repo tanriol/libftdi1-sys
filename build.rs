@@ -21,6 +21,7 @@ fn main() {
             let bindings = bindgen::Builder::default()
                 .header("wrapper.h")
                 .default_enum_style(bindgen::EnumVariation::NewType{ is_bitfield : false })
+                .derive_default(true)
                 .rustfmt_bindings(true)
                 .whitelist_function("ftdi_.*")
                 .whitelist_type("ftdi_.*")

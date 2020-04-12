@@ -144,6 +144,11 @@ pub struct ftdi_transfer_control {
     pub ftdi: *mut ftdi_context,
     pub transfer: *mut libusb_transfer,
 }
+impl Default for ftdi_transfer_control {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct ftdi_context {
@@ -168,6 +173,11 @@ pub struct ftdi_context {
     pub eeprom: *mut ftdi_eeprom,
     pub error_str: *const ::std::os::raw::c_char,
     pub module_detach_mode: ftdi_module_detach_mode,
+}
+impl Default for ftdi_context {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 impl ftdi_eeprom_value {
     pub const VENDOR_ID: ftdi_eeprom_value = ftdi_eeprom_value(0);
@@ -352,6 +362,11 @@ pub struct ftdi_device_list {
     pub next: *mut ftdi_device_list,
     pub dev: *mut libusb_device,
 }
+impl Default for ftdi_device_list {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 impl ftdi_cbus_func {
     pub const CBUS_TXDEN: ftdi_cbus_func = ftdi_cbus_func(0);
 }
@@ -510,6 +525,11 @@ pub struct size_and_time {
     pub totalBytes: u64,
     pub time: timeval,
 }
+impl Default for size_and_time {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 pub struct FTDIProgressInfo {
     pub first: size_and_time,
@@ -518,6 +538,11 @@ pub struct FTDIProgressInfo {
     pub totalTime: f64,
     pub totalRate: f64,
     pub currentRate: f64,
+}
+impl Default for FTDIProgressInfo {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type FTDIStreamCallback = ::std::option::Option<
     unsafe extern "C" fn(
@@ -535,6 +560,11 @@ pub struct ftdi_version_info {
     pub micro: ::std::os::raw::c_int,
     pub version_str: *const ::std::os::raw::c_char,
     pub snapshot_str: *const ::std::os::raw::c_char,
+}
+impl Default for ftdi_version_info {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub fn ftdi_init(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
@@ -925,27 +955,27 @@ extern "C" {
     pub fn ftdi_get_error_string(ftdi: *mut ftdi_context) -> *const ::std::os::raw::c_char;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct libusb_transfer {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct libusb_context {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct libusb_device_handle {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct ftdi_eeprom {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone)]
 pub struct libusb_device {
     pub _address: u8,
 }

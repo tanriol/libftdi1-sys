@@ -1,38 +1,9 @@
-[package]
-name = "libftdi1-sys"
-version = "0.2.0"
-authors = ["Denis Lisov <dennis.lissov@gmail.com>"]
-keywords = ["bindings", "hardware","ftdi", "libftdi1"]
-description = "FFI bindings for libftdi1"
-license = "MIT"
-homepage = "https://github.com/tanriol/libftdi1-sys"
-repository = "https://github.com/tanriol/libftdi1-sys"
-edition = "2018"
-
-build = "build.rs"
-
-[features]
-default = ["bindgen"]
-vendored = ["libftdi1-vendored-lgpl"]
-
-[dependencies]
-cfg-if = "0.1.10"
-libc = "0.2"
-libftdi1-vendored-lgpl = {version = "1.0.0-alpha1", optional = true}
-
-[build-dependencies]
-cfg-if = "0.1.10"
-
-[target.'cfg(not(all(windows, target_env="msvc")))'.build-dependencies]
-pkg-config = "0.3.7"
-
-[target.'cfg(all(windows, target_env="msvc"))'.build-dependencies]
-vcpkg = "0.2"
-
-[build-dependencies.bindgen]
-version = "0.53.2"
-optional = true
+[workspace]
+members = [
+    "sys",
+    "sys-vendored-lgpl",
+]
 
 # Development only
 [patch.crates-io]
-libftdi1-vendored-lgpl = {version = "1.0.0-alpha1", optional = true, path = "sys-vendored-lgpl"}
+libftdi1-vendored-lgpl = {path = "sys-vendored-lgpl"}

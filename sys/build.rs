@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 cfg_if::cfg_if! {
     if #[cfg(feature = "bindgen")] {
         use bindgen;

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 fn main() {
     // Find include locations
     let libusb = pkg_config::Config::new()

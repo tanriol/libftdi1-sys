@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 //! Test with remote echo hardware
 //! Mainly used as a compile test
 

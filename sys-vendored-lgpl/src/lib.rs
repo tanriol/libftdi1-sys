@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 //! *Attention*: this is an internal crate, you should depend on `libftdi1-sys` instead!
 //!
 //! libftdi1 is a library for working with FTDI chips like FT232BM, FT245BM,

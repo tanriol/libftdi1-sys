@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 //! A simple test script for testing the loopback features
 //! of the FTDI DLP-HS-FPGA3's default FPGA firmware.
 //! Mainly used as a compile test

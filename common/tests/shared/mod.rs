@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-use crate::*;
+// This file is intended to be included as a module in integration tests after `use crate_name::*;`
+
+use super::*;
 
 #[test]
 fn smoke_test() {

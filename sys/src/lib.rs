@@ -19,6 +19,3 @@ cfg_if::cfg_if! {
         include!("pregenerated.rs");
     }
 }
-
-#[cfg(test)]
-mod test;

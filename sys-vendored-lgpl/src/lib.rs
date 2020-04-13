@@ -17,6 +17,3 @@
 #![allow(non_snake_case)]
 
 include!("pregenerated.rs");
-
-#[cfg(test)]
-mod test;

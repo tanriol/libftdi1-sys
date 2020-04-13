@@ -13,7 +13,6 @@ edition = "2018"
 build = "build.rs"
 
 [features]
-default = ["bindgen"]
 vendored = ["libftdi1-sys-vendored-lgpl"]
 
 [dependencies]

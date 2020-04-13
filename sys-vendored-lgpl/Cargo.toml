@@ -31,4 +31,5 @@ libc = "0.2"
 
 [build-dependencies]
 cc = "1.0.50"
+cfg-if = "0.1.10"
 pkg-config = "0.3.7"

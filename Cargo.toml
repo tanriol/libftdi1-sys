@@ -3,7 +3,3 @@ members = [
     "sys",
     "sys-vendored-lgpl",
 ]
-
-# Development only
-[patch.crates-io]
-libftdi1-sys-vendored-lgpl = {path = "sys-vendored-lgpl"}

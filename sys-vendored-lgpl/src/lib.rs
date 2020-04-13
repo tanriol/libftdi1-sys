@@ -16,13 +16,7 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-cfg_if::cfg_if! {
-    if #[cfg(feature = "bindgen")] {
-        include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
-    } else {
-        include!("pregenerated.rs");
-    }
-}
+include!("pregenerated.rs");
 
 #[cfg(test)]
 mod test;

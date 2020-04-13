@@ -27,10 +27,8 @@ maintenance = { status = "passively-maintained" }
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cfg-if = "0.1.10"
 libc = "0.2"
 
 [build-dependencies]
-cfg-if = "0.1.10"
 cc = "1.0.50"
 pkg-config = "0.3.7"

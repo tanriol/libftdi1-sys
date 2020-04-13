@@ -1,3 +1,3 @@
 [submodule "libftdi1-vendored/libftdi"]
-	path = libftdi1-vendored-lgpl/libftdi
+	path = sys-vendored-lgpl/libftdi
 	url = git://developer.intra2net.com/libftdi

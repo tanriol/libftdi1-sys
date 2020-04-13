@@ -35,4 +35,4 @@ optional = true
 
 # Development only
 [patch.crates-io]
-libftdi1-vendored-lgpl = {version = "1.0.0-alpha1", optional = true, path = "libftdi1-vendored-lgpl"}
+libftdi1-vendored-lgpl = {version = "1.0.0-alpha1", optional = true, path = "sys-vendored-lgpl"}

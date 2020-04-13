@@ -3,6 +3,7 @@ name = "libftdi1-sys"
 version = "1.0.0-alpha1"
 authors = ["Denis Lisov <dennis.lissov@gmail.com>"]
 keywords = ["bindings", "hardware","ftdi", "libftdi1"]
+categories = ["external-ffi-bindings", "hardware-support"]
 description = "FFI bindings for libftdi1"
 license = "MIT"
 homepage = "https://github.com/tanriol/libftdi1-sys"

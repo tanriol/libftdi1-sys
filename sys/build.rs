@@ -19,7 +19,9 @@ fn main() {
     }
 
     cfg_if::cfg_if! {
-        if #[cfg(feature = "bindgen")] {
+        if #[cfg(feature = "vendored")] {
+            // Do nothing, binding generation is on `libftdi1-vendored-lgpl`
+        } else if #[cfg(feature = "bindgen")] {
             let bindings = bindgen::Builder::default()
                 .header("wrapper.h")
                 .default_enum_style(bindgen::EnumVariation::NewType{ is_bitfield : false })

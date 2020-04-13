@@ -13,12 +13,12 @@ build = "build.rs"
 
 [features]
 default = ["bindgen"]
-vendored = ["libftdi1-vendored-lgpl"]
+vendored = ["libftdi1-sys-vendored-lgpl"]
 
 [dependencies]
 cfg-if = "0.1.10"
 libc = "0.2"
-libftdi1-vendored-lgpl = {version = "1.0.0-alpha1", optional = true}
+libftdi1-sys-vendored-lgpl = {version = "1.0.0-alpha1", optional = true}
 
 [build-dependencies]
 cfg-if = "0.1.10"

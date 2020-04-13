@@ -6,4 +6,4 @@ members = [
 
 # Development only
 [patch.crates-io]
-libftdi1-vendored-lgpl = {path = "sys-vendored-lgpl"}
+libftdi1-sys-vendored-lgpl = {path = "sys-vendored-lgpl"}

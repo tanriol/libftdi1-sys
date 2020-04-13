@@ -9,7 +9,9 @@ cfg_if::cfg_if! {
 
 fn main() {
     cfg_if::cfg_if! {
-        if #[cfg(all(windows, target_env="msvc"))] {
+        if #[cfg(feature = "vendored")] {
+            // Do nothing, building and linking to the library is on `libftdi1-vendored-lgpl`
+        } else if #[cfg(all(windows, target_env="msvc"))] {
             vcpkg::find_package("libftdi1").unwrap();
         } else {
             pkg_config::Config::new().atleast_version("1.4").probe("libftdi1").unwrap();

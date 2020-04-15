@@ -32,4 +32,9 @@ libc = "0.2"
 [build-dependencies]
 cc = "1.0.50"
 cfg-if = "0.1.10"
+
+[target.'cfg(not(all(windows, target_env="msvc")))'.build-dependencies]
 pkg-config = "0.3.7"
+
+[target.'cfg(all(windows, target_env="msvc"))'.build-dependencies]
+vcpkg = "0.2"

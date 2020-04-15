@@ -19,7 +19,7 @@ fn main() {
 cfg_if::cfg_if! {
     if #[cfg(all(windows, target_env="msvc"))] {
         fn link_and_get_include_paths() -> Vec<PathBuf> {
-            let libusb = vcpkg::probe_library("libusb-1.0")
+            let libusb = vcpkg::find_package("libusb-1.0")
                 .expect("libusb is required for libftdi");
             libusb.include_paths
         }

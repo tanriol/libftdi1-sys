@@ -135,7 +135,7 @@ impl ftdi_module_detach_mode {
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct ftdi_module_detach_mode(pub u32);
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct ftdi_transfer_control {
     pub completed: ::std::os::raw::c_int,
     pub buf: *mut ::std::os::raw::c_uchar,
@@ -145,7 +145,7 @@ pub struct ftdi_transfer_control {
     pub transfer: *mut libusb_transfer,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct ftdi_context {
     pub usb_ctx: *mut libusb_context,
     pub usb_dev: *mut libusb_device_handle,
@@ -347,7 +347,7 @@ impl ftdi_eeprom_value {
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct ftdi_eeprom_value(pub u32);
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct ftdi_device_list {
     pub next: *mut ftdi_device_list,
     pub dev: *mut libusb_device,
@@ -925,27 +925,27 @@ extern "C" {
     pub fn ftdi_get_error_string(ftdi: *mut ftdi_context) -> *const ::std::os::raw::c_char;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct libusb_transfer {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct libusb_context {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct libusb_device_handle {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct ftdi_eeprom {
     pub _address: u8,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub struct libusb_device {
     pub _address: u8,
 }

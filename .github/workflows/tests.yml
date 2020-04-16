@@ -16,8 +16,8 @@ jobs:
       with:
         toolchain: 1.31.0
         profile: minimal
-    - name: Install libftdi1
-      run: sudo apt-get install libftdi1
+    - name: Install libftdi1-dev
+      run: sudo apt-get install libftdi1-dev
     - name: Build
       run: cargo build --verbose
     - name: Run tests

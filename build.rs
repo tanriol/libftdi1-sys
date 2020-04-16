@@ -9,13 +9,26 @@ cfg_if::cfg_if! {
     }
 }
 
-fn main() {
-    cfg_if::cfg_if! {
-        if #[cfg(all(windows, target_env="msvc"))] {
-            vcpkg::find_package("libftdi1").unwrap();
-        } else {
-            pkg_config::Config::new().atleast_version("1.4").probe("libftdi1").unwrap();
+cfg_if::cfg_if! {
+    if #[cfg(all(windows, target_env="msvc"))] {
+        fn find_library() -> Result<vcpkg::Library, vcpkg::Error> {
+            vcpkg::find_package("libftdi1")
         }
+    } else {
+        fn find_library() -> Result<pkg_config::Library, pkg_config::Error> {
+            pkg_config::Config::new().atleast_version("1.4").probe("libftdi1")
+        }
+    }
+}
+
+fn main() {
+    if let Err(err) = find_library() {
+        println!(
+            "cargo:warning={}: {}",
+            "Config for libftdi1 not found, falling back to default search path",
+            err,
+        );
+        println!("cargo:rustc-link-lib=dylib=ftdi1");
     }
 
     cfg_if::cfg_if! {

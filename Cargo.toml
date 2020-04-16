@@ -10,6 +10,8 @@ homepage = "https://github.com/tanriol/libftdi1-sys"
 repository = "https://github.com/tanriol/libftdi1-sys"
 edition = "2018"
 
+exclude = [".github"]
+
 build = "build.rs"
 
 [features]

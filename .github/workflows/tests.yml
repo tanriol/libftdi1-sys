@@ -69,6 +69,7 @@ jobs:
       uses: lukka/run-vcpkg@master
       with:
         vcpkgArguments: 'libftdi1:x64-windows'
+        vcpkgGitCommitId: '7aebb48' # 2020.01
     - name: Build and run tests (pregenerated)
       run: cargo test --verbose
     - name: Build and run tests (bindgen)

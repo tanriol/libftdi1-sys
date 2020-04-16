@@ -28,4 +28,11 @@ or `1.34` with the `bindgen` feature.
 
 # Features
 * `bindgen`: Generate bindings to `libftdi` at compile time.
-  Enabled by default.
+
+# Contributing
+
+This crate is expected to be passively maintained, not actively updated.
+That being said, if you want to update binding generation,
+you can set the `LIBFTDI1_SYS_DEVEL` environment variable with any value
+so that an updated binding file is written in `src` alongside the original one
+enabling you to compare them and copy it over the old one to update.

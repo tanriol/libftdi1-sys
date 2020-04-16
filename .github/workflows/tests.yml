@@ -58,7 +58,7 @@ jobs:
   windows-msvc:
     runs-on: windows-latest
     env:
-    - VCPKGRS_DYNAMIC: 1
+      VCPKGRS_DYNAMIC: 1
     steps:
     - uses: actions/checkout@v2
     - name: Install toolchain

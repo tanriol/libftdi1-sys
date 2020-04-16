@@ -74,5 +74,3 @@ jobs:
         vcpkgGitCommitId: '7aebb48' # 2020.01
     - name: Build and run tests (pregenerated)
       run: cargo test --verbose
-    - name: Build and run tests (bindgen)
-      run: cargo test --verbose --features=bindgen

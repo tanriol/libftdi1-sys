@@ -1,14 +1,20 @@
+# See https://doc.rust-lang.org/cargo/reference/manifest.html for full list
 [package]
 name = "libftdi1-sys"
 version = "1.0.0-alpha1"
 authors = ["Denis Lisov <dennis.lissov@gmail.com>"]
-keywords = ["bindings", "hardware","ftdi", "libftdi1"]
-categories = ["external-ffi-bindings", "hardware-support"]
+edition = "2018"
+
 description = "FFI bindings for libftdi1"
-license = "MIT"
+#documentation = ""
+readme = "README.md"
 homepage = "https://github.com/tanriol/libftdi1-sys"
 repository = "https://github.com/tanriol/libftdi1-sys"
-edition = "2018"
+
+license = "MIT"
+keywords = ["bindings", "hardware","ftdi", "libftdi1"]
+categories = ["external-ffi-bindings", "hardware-support"]
+links = "ftdi1"
 
 exclude = [".github"]
 

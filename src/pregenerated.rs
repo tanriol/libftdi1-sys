@@ -926,26 +926,6 @@ extern "C" {
 }
 #[repr(C)]
 #[derive(Debug)]
-pub struct libusb_transfer {
-    pub _address: u8,
-}
-#[repr(C)]
-#[derive(Debug)]
-pub struct libusb_context {
-    pub _address: u8,
-}
-#[repr(C)]
-#[derive(Debug)]
-pub struct libusb_device_handle {
-    pub _address: u8,
-}
-#[repr(C)]
-#[derive(Debug)]
 pub struct ftdi_eeprom {
-    pub _address: u8,
-}
-#[repr(C)]
-#[derive(Debug)]
-pub struct libusb_device {
     pub _address: u8,
 }

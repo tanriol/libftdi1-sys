@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 
+use std::env;
+
 cfg_if::cfg_if! {
     if #[cfg(feature = "bindgen")] {
         use bindgen;
 
-        use std::env;
         use std::path::PathBuf;
     }
 }
@@ -29,6 +30,15 @@ fn main() {
             err,
         );
         println!("cargo:rustc-link-lib=dylib=ftdi1");
+    }
+
+    if cfg!(feature = "libusb1-sys") {
+        match env::var("DEP_USB_1.0_STATIC") {
+            Ok(ref val) if val == "1" => {
+                panic!("libusb1-sys integration is not yet supported when it's linked statically");
+            }
+            _ => {}
+        }
     }
 
     cfg_if::cfg_if! {

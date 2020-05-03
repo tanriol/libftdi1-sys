@@ -11,7 +11,7 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-use crate::libusb1_sys::*;
+use crate::libusb1_sys::{libusb_device, libusb_context, libusb_device_handle, libusb_transfer};
 
 cfg_if::cfg_if! {
     if #[cfg(feature = "bindgen")] {
@@ -21,22 +21,28 @@ cfg_if::cfg_if! {
     }
 }
 
-/// Internal placeholders for `libusb` types. Do not use externally.
-mod libusb1_sys {
-    #[repr(C)]
-    pub struct libusb_transfer {
-        _address: u8,
-    }
-    #[repr(C)]
-    pub struct libusb_context {
-        _address: u8,
-    }
-    #[repr(C)]
-    pub struct libusb_device_handle {
-        _address: u8,
-    }
-    #[repr(C)]
-    pub struct libusb_device {
-        _address: u8,
+cfg_if::cfg_if! {
+    if #[cfg(feature = "libusb1-sys")] {
+        pub use libusb1_sys;
+    } else {
+        /// Internal placeholders for `libusb` types. Do not use externally.
+        mod libusb1_sys {
+            #[repr(C)]
+            pub struct libusb_transfer {
+                _address: u8,
+            }
+            #[repr(C)]
+            pub struct libusb_context {
+                _address: u8,
+            }
+            #[repr(C)]
+            pub struct libusb_device_handle {
+                _address: u8,
+            }
+            #[repr(C)]
+            pub struct libusb_device {
+                _address: u8,
+            }
+        }
     }
 }

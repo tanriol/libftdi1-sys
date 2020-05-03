@@ -40,12 +40,12 @@ fn main() {
                     .rustfmt_bindings(true)
                     .whitelist_function("ftdi_.*")
                     .whitelist_type("ftdi_.*")
-                    .no_copy("libusb_.*")
                     .no_copy("ftdi_eeprom")
                     .no_copy("ftdi_device_list")
                     .no_copy("ftdi_context")
                     .no_copy("ftdi_transfer_control")
                     .blacklist_type("timeval")
+                    .blacklist_type("libusb_.*")
                     .blacklist_type("__.*")
                     .raw_line("pub type timeval = libc::timeval;")
             }

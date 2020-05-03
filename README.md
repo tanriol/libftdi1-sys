@@ -4,7 +4,8 @@
 
 # Prerequisites
 This crate requires `libftdi1` version 1.4 (August 2017) or later to be available as a system library
-that can be found with `pkg-config` (everywhere except windows/MSVC) or `vcpkg` (windows/MSVC).
+that can be found with `pkg-config` (everywhere except windows/MSVC) or `vcpkg` (windows/MSVC)
+unless you activate the `vendored` feature.
 
 By default the crate uses pregenerated bindings which should be fine in most cases.
 In special cases the bindings can be regenerated using the `bindgen` feature.
@@ -30,6 +31,8 @@ and `1.34` with the `bindgen` feature.
 # Features
 * `libusb1-sys`: depend on `libusb1-sys` and use real `libusb` types instead of placeholders.
 This makes it possible to interact directly with the underlying `libusb` structures.
+* `vendored`: build a custom copy of `libftdi` instead of using the system one.
+Note that this includes LGPL code in your build.
 * `bindgen`: Generate bindings to `libftdi` at compile time.
 
 # Contributing

@@ -1,0 +1,31 @@
+# See https://doc.rust-lang.org/cargo/reference/manifest.html for full list
+[package]
+name = "libftdi1-source-lgpl"
+version = "1.4.0"
+authors = ["Denis Lisov <dennis.lissov@gmail.com>", "libFTDI authors"]
+edition = "2018"
+
+description = "libFTDI source code bundle for libftdi1-sys (internal use only)"
+#documentation = ""
+readme = "README.md"
+#homepage = ""
+repository = "https://github.com/tanriol/libftdi1-sys"
+
+license = "LGPL-2.1"
+links = "ftdi1_source"
+
+include = [
+    "Cargo.toml",
+    "build.rs",
+    "lib.rs",
+    "libftdi/src/*",
+    "README.md",
+]
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+
+[badges]
+maintenance = { status = "passively-maintained" }

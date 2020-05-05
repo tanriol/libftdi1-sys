@@ -11,15 +11,18 @@ jobs:
     strategy:
       matrix:
         include:
-        - name: MSRV
+        - name: MSRV (minimal)
           toolchain: 1.31.0
           features: ""
-        - name: MSRV-bindgen
+        - name: MSRV (libusb1-sys)
+          toolchain: 1.32.0
+          features: libusb1-sys
+        - name: MSRV (bindgen)
           toolchain: 1.34.0
           features: bindgen
         - name: Nightly
           toolchain: nightly
-          features: bindgen
+          features: libusb1-sys,bindgen
       fail-fast: false
 
     name: ${{ matrix.name }}

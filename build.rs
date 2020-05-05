@@ -26,8 +26,7 @@ fn main() {
     if let Err(err) = find_library() {
         println!(
             "cargo:warning={}: {}",
-            "Config for libftdi1 not found, falling back to default search path",
-            err,
+            "Config for libftdi1 not found, falling back to default search path", err,
         );
         println!("cargo:rustc-link-lib=dylib=ftdi1");
     }

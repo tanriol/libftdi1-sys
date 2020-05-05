@@ -11,7 +11,7 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-use crate::libusb1_sys::{libusb_device, libusb_context, libusb_device_handle, libusb_transfer};
+use crate::libusb1_sys::{libusb_context, libusb_device, libusb_device_handle, libusb_transfer};
 
 cfg_if::cfg_if! {
     if #[cfg(feature = "bindgen")] {

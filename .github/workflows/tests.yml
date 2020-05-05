@@ -14,29 +14,41 @@ jobs:
         - name: MSRV (minimal)
           toolchain: 1.31.0
           features: ""
+        - name: MSRV (vendored)
+          toolchain: 1.31.0
+          features: vendored
+          native_deps: libusb-1.0-0-dev
         - name: MSRV (libusb1-sys)
           toolchain: 1.32.0
           features: libusb1-sys
+        - name: vendored,libusb1-sys
+          toolchain: 1.32.0
+          features: libusb1-sys,vendored
+          native_deps: libusb-1.0-0-dev
         - name: MSRV (bindgen)
           toolchain: 1.34.0
           features: bindgen
         - name: Nightly
           toolchain: nightly
-          features: libusb1-sys,bindgen
+          features: libusb1-sys,vendored,bindgen
+          native_deps: libusb-1.0-0-dev
       fail-fast: false
 
     name: ${{ matrix.name }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true
     - name: Install toolchain
       uses: actions-rs/toolchain@v1.0.3
       with:
         toolchain: ${{ matrix.toolchain }}
         profile: minimal
         default: true
-    - name: Install libftdi1-dev
-      run: sudo apt-get install libftdi1-dev
+    - if: ${{ matrix.native_deps || 'libftdi1-dev' }}
+      name: Install native packages (${{ matrix.native_deps || 'libftdi1-dev' }})
+      run: sudo apt-get install ${{ matrix.native_deps || 'libftdi1-dev' }}
     - run: cargo build --verbose --features=${{ matrix.features }}
     - run: cargo test --verbose --features=${{ matrix.features }}
 

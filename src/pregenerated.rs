@@ -2,6 +2,41 @@
 
 pub type timeval = libc::timeval;
 
+pub const SIO_RESET: u32 = 0;
+pub const SIO_MODEM_CTRL: u32 = 1;
+pub const SIO_SET_FLOW_CTRL: u32 = 2;
+pub const SIO_SET_BAUD_RATE: u32 = 3;
+pub const SIO_SET_DATA: u32 = 4;
+pub const SIO_RESET_REQUEST: u32 = 0;
+pub const SIO_SET_BAUDRATE_REQUEST: u32 = 3;
+pub const SIO_SET_DATA_REQUEST: u32 = 4;
+pub const SIO_SET_FLOW_CTRL_REQUEST: u32 = 2;
+pub const SIO_SET_MODEM_CTRL_REQUEST: u32 = 1;
+pub const SIO_POLL_MODEM_STATUS_REQUEST: u32 = 5;
+pub const SIO_SET_EVENT_CHAR_REQUEST: u32 = 6;
+pub const SIO_SET_ERROR_CHAR_REQUEST: u32 = 7;
+pub const SIO_SET_LATENCY_TIMER_REQUEST: u32 = 9;
+pub const SIO_GET_LATENCY_TIMER_REQUEST: u32 = 10;
+pub const SIO_SET_BITMODE_REQUEST: u32 = 11;
+pub const SIO_READ_PINS_REQUEST: u32 = 12;
+pub const SIO_READ_EEPROM_REQUEST: u32 = 144;
+pub const SIO_WRITE_EEPROM_REQUEST: u32 = 145;
+pub const SIO_ERASE_EEPROM_REQUEST: u32 = 146;
+pub const SIO_RESET_SIO: u32 = 0;
+pub const SIO_RESET_PURGE_RX: u32 = 1;
+pub const SIO_RESET_PURGE_TX: u32 = 2;
+pub const SIO_TCIFLUSH: u32 = 2;
+pub const SIO_TCOFLUSH: u32 = 1;
+pub const SIO_DISABLE_FLOW_CTRL: u32 = 0;
+pub const SIO_RTS_CTS_HS: u32 = 256;
+pub const SIO_DTR_DSR_HS: u32 = 512;
+pub const SIO_XON_XOFF_HS: u32 = 1024;
+pub const SIO_SET_DTR_MASK: u32 = 1;
+pub const SIO_SET_DTR_HIGH: u32 = 257;
+pub const SIO_SET_DTR_LOW: u32 = 256;
+pub const SIO_SET_RTS_MASK: u32 = 2;
+pub const SIO_SET_RTS_HIGH: u32 = 514;
+pub const SIO_SET_RTS_LOW: u32 = 512;
 impl ftdi_chip_type {
     pub const TYPE_AM: ftdi_chip_type = ftdi_chip_type(0);
 }
@@ -28,7 +63,7 @@ impl ftdi_chip_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_chip_type(pub u32);
+pub struct ftdi_chip_type(pub i32);
 impl ftdi_parity_type {
     pub const NONE: ftdi_parity_type = ftdi_parity_type(0);
 }
@@ -46,7 +81,7 @@ impl ftdi_parity_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_parity_type(pub u32);
+pub struct ftdi_parity_type(pub i32);
 impl ftdi_stopbits_type {
     pub const STOP_BIT_1: ftdi_stopbits_type = ftdi_stopbits_type(0);
 }
@@ -58,7 +93,7 @@ impl ftdi_stopbits_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_stopbits_type(pub u32);
+pub struct ftdi_stopbits_type(pub i32);
 impl ftdi_bits_type {
     pub const BITS_7: ftdi_bits_type = ftdi_bits_type(7);
 }
@@ -67,7 +102,7 @@ impl ftdi_bits_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_bits_type(pub u32);
+pub struct ftdi_bits_type(pub i32);
 impl ftdi_break_type {
     pub const BREAK_OFF: ftdi_break_type = ftdi_break_type(0);
 }
@@ -76,7 +111,7 @@ impl ftdi_break_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_break_type(pub u32);
+pub struct ftdi_break_type(pub i32);
 impl ftdi_mpsse_mode {
     pub const BITMODE_RESET: ftdi_mpsse_mode = ftdi_mpsse_mode(0);
 }
@@ -106,7 +141,7 @@ impl ftdi_mpsse_mode {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_mpsse_mode(pub u32);
+pub struct ftdi_mpsse_mode(pub i32);
 impl ftdi_interface {
     pub const INTERFACE_ANY: ftdi_interface = ftdi_interface(0);
 }
@@ -124,16 +159,19 @@ impl ftdi_interface {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_interface(pub u32);
+pub struct ftdi_interface(pub i32);
 impl ftdi_module_detach_mode {
     pub const AUTO_DETACH_SIO_MODULE: ftdi_module_detach_mode = ftdi_module_detach_mode(0);
 }
 impl ftdi_module_detach_mode {
     pub const DONT_DETACH_SIO_MODULE: ftdi_module_detach_mode = ftdi_module_detach_mode(1);
 }
+impl ftdi_module_detach_mode {
+    pub const AUTO_DETACH_REATACH_SIO_MODULE: ftdi_module_detach_mode = ftdi_module_detach_mode(2);
+}
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_module_detach_mode(pub u32);
+pub struct ftdi_module_detach_mode(pub i32);
 #[repr(C)]
 #[derive(Debug)]
 pub struct ftdi_transfer_control {
@@ -345,7 +383,7 @@ impl ftdi_eeprom_value {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_eeprom_value(pub u32);
+pub struct ftdi_eeprom_value(pub i32);
 #[repr(C)]
 #[derive(Debug)]
 pub struct ftdi_device_list {
@@ -393,7 +431,7 @@ impl ftdi_cbus_func {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_cbus_func(pub u32);
+pub struct ftdi_cbus_func(pub i32);
 impl ftdi_cbush_func {
     pub const CBUSH_TRISTATE: ftdi_cbush_func = ftdi_cbush_func(0);
 }
@@ -435,7 +473,7 @@ impl ftdi_cbush_func {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_cbush_func(pub u32);
+pub struct ftdi_cbush_func(pub i32);
 impl ftdi_cbusx_func {
     pub const CBUSX_TRISTATE: ftdi_cbusx_func = ftdi_cbusx_func(0);
 }
@@ -504,7 +542,7 @@ impl ftdi_cbusx_func {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_cbusx_func(pub u32);
+pub struct ftdi_cbusx_func(pub i32);
 #[repr(C)]
 pub struct size_and_time {
     pub totalBytes: u64,
@@ -612,9 +650,9 @@ extern "C" {
 extern "C" {
     pub fn ftdi_eeprom_set_strings(
         ftdi: *mut ftdi_context,
-        manufacturer: *mut ::std::os::raw::c_char,
-        product: *mut ::std::os::raw::c_char,
-        serial: *mut ::std::os::raw::c_char,
+        manufacturer: *const ::std::os::raw::c_char,
+        product: *const ::std::os::raw::c_char,
+        serial: *const ::std::os::raw::c_char,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
@@ -667,6 +705,15 @@ extern "C" {
 }
 extern "C" {
     pub fn ftdi_usb_reset(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ftdi_tciflush(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ftdi_tcoflush(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ftdi_tcioflush(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn ftdi_usb_purge_rx_buffer(ftdi: *mut ftdi_context) -> ::std::os::raw::c_int;
@@ -805,6 +852,13 @@ extern "C" {
     pub fn ftdi_setflowctrl(
         ftdi: *mut ftdi_context,
         flowctrl: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ftdi_setflowctrl_xonxoff(
+        ftdi: *mut ftdi_context,
+        xon: ::std::os::raw::c_uchar,
+        xoff: ::std::os::raw::c_uchar,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {

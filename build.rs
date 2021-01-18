@@ -52,6 +52,8 @@ fn main() {
                     .rustfmt_bindings(true)
                     .whitelist_function("ftdi_.*")
                     .whitelist_type("ftdi_.*")
+                    .generate_comments(false)
+                    .whitelist_var("SIO_.*")
                     .no_copy("ftdi_eeprom")
                     .no_copy("ftdi_device_list")
                     .no_copy("ftdi_context")

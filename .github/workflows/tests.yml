@@ -69,7 +69,7 @@ jobs:
         profile: minimal
         default: true
     - name: Restore / setup vcpkg and libftdi1
-      uses: lukka/run-vcpkg@master
+      uses: lukka/run-vcpkg@v6
       with:
         vcpkgArguments: 'libftdi1:x64-windows'
         vcpkgGitCommitId: '7aebb48' # 2020.01

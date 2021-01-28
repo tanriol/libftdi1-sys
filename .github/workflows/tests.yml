@@ -40,6 +40,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: true
+        fetch-depth: 0
     - name: Install toolchain
       uses: actions-rs/toolchain@v1.0.3
       with:
@@ -58,6 +59,8 @@ jobs:
       VCPKGRS_DYNAMIC: 1
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Install toolchain
       uses: actions-rs/toolchain@v1.0.3
       with:

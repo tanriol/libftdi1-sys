@@ -72,6 +72,6 @@ jobs:
       uses: lukka/run-vcpkg@v6
       with:
         vcpkgArguments: 'libftdi1:x64-windows'
-        vcpkgGitCommitId: '7aebb48' # 2020.01
+        vcpkgGitCommitId: 'ec6fe06' # 2020.11-1
     - name: Build and run tests (pregenerated)
       run: cargo test --verbose

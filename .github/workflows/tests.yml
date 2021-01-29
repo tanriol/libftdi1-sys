@@ -26,7 +26,7 @@ jobs:
           features: libusb1-sys,vendored
           native_deps: libusb-1.0-0-dev
         - name: MSRV (bindgen)
-          toolchain: 1.34.0
+          toolchain: 1.36.0
           features: bindgen
         - name: Nightly
           toolchain: nightly

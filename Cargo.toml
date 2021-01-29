@@ -27,7 +27,7 @@ vendored = ["libftdi1-source-lgpl", "cc"]
 [dependencies]
 cfg-if = "0.1.10"
 libc = "0.2"
-libftdi1-source-lgpl = {version = "=1.4.0", path = "libftdi1-source-lgpl", optional = true}
+libftdi1-source-lgpl = {version = "=1.5.0", path = "libftdi1-source-lgpl", optional = true}
 
 [dependencies.libusb1-sys]
 version = "0.3.7"

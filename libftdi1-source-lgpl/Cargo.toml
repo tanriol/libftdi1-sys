@@ -1,7 +1,7 @@
 # See https://doc.rust-lang.org/cargo/reference/manifest.html for full list
 [package]
 name = "libftdi1-source-lgpl"
-version = "1.4.0"
+version = "1.5.0"
 authors = ["Denis Lisov <dennis.lissov@gmail.com>", "libFTDI authors"]
 edition = "2018"
 
@@ -11,7 +11,7 @@ readme = "README.md"
 #homepage = ""
 repository = "https://github.com/tanriol/libftdi1-sys"
 
-license = "LGPL-2.1"
+license = "LGPL-2.1 AND MIT"
 links = "ftdi1_source"
 
 include = [

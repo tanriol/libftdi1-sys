@@ -63,7 +63,7 @@ impl ftdi_chip_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_chip_type(pub i32);
+pub struct ftdi_chip_type(pub u32);
 impl ftdi_parity_type {
     pub const NONE: ftdi_parity_type = ftdi_parity_type(0);
 }
@@ -81,7 +81,7 @@ impl ftdi_parity_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_parity_type(pub i32);
+pub struct ftdi_parity_type(pub u32);
 impl ftdi_stopbits_type {
     pub const STOP_BIT_1: ftdi_stopbits_type = ftdi_stopbits_type(0);
 }
@@ -93,7 +93,7 @@ impl ftdi_stopbits_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_stopbits_type(pub i32);
+pub struct ftdi_stopbits_type(pub u32);
 impl ftdi_bits_type {
     pub const BITS_7: ftdi_bits_type = ftdi_bits_type(7);
 }
@@ -102,7 +102,7 @@ impl ftdi_bits_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_bits_type(pub i32);
+pub struct ftdi_bits_type(pub u32);
 impl ftdi_break_type {
     pub const BREAK_OFF: ftdi_break_type = ftdi_break_type(0);
 }
@@ -111,7 +111,7 @@ impl ftdi_break_type {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_break_type(pub i32);
+pub struct ftdi_break_type(pub u32);
 impl ftdi_mpsse_mode {
     pub const BITMODE_RESET: ftdi_mpsse_mode = ftdi_mpsse_mode(0);
 }
@@ -141,7 +141,7 @@ impl ftdi_mpsse_mode {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_mpsse_mode(pub i32);
+pub struct ftdi_mpsse_mode(pub u32);
 impl ftdi_interface {
     pub const INTERFACE_ANY: ftdi_interface = ftdi_interface(0);
 }
@@ -159,7 +159,7 @@ impl ftdi_interface {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_interface(pub i32);
+pub struct ftdi_interface(pub u32);
 impl ftdi_module_detach_mode {
     pub const AUTO_DETACH_SIO_MODULE: ftdi_module_detach_mode = ftdi_module_detach_mode(0);
 }
@@ -171,7 +171,7 @@ impl ftdi_module_detach_mode {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_module_detach_mode(pub i32);
+pub struct ftdi_module_detach_mode(pub u32);
 #[repr(C)]
 #[derive(Debug)]
 pub struct ftdi_transfer_control {
@@ -383,7 +383,7 @@ impl ftdi_eeprom_value {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_eeprom_value(pub i32);
+pub struct ftdi_eeprom_value(pub u32);
 #[repr(C)]
 #[derive(Debug)]
 pub struct ftdi_device_list {
@@ -431,7 +431,7 @@ impl ftdi_cbus_func {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_cbus_func(pub i32);
+pub struct ftdi_cbus_func(pub u32);
 impl ftdi_cbush_func {
     pub const CBUSH_TRISTATE: ftdi_cbush_func = ftdi_cbush_func(0);
 }
@@ -473,7 +473,7 @@ impl ftdi_cbush_func {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_cbush_func(pub i32);
+pub struct ftdi_cbush_func(pub u32);
 impl ftdi_cbusx_func {
     pub const CBUSX_TRISTATE: ftdi_cbusx_func = ftdi_cbusx_func(0);
 }
@@ -542,7 +542,7 @@ impl ftdi_cbusx_func {
 }
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct ftdi_cbusx_func(pub i32);
+pub struct ftdi_cbusx_func(pub u32);
 #[repr(C)]
 pub struct size_and_time {
     pub totalBytes: u64,

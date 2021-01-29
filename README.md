@@ -26,6 +26,8 @@ Regenerating bindings has an additional requirement that
 # MSRV
 The Minimum Supported Rust Version (MSRV) is stable `1.34`,
 or `1.36` with the `bindgen` feature.
+Note that it can be possible to build on lower Rust versions
+by downgrading some dependencies.
 
 # Features
 * `libusb1-sys`: depend on `libusb1-sys` and use real `libusb` types instead of placeholders.

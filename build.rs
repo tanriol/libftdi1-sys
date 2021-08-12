@@ -45,10 +45,34 @@ fn main() {
 
     cfg_if::cfg_if! {
         if #[cfg(feature = "bindgen")] {
+
+            #[derive(Debug)]
+            struct Callbacks;
+
+            use bindgen::callbacks::{IntKind, ParseCallbacks};
+
+            impl ParseCallbacks for Callbacks {
+                fn int_macro(&self, name: &str, _value: i64)-> Option<IntKind> {
+                    static OVERRIDE_SIGNED: &[&str] = &[
+                        "SIO_DISABLE_FLOW_CTRL",
+                        "SIO_RTS_CTS_HS",
+                        "SIO_DTR_DSR_HS",
+                        "SIO_XON_XOFF_HS",
+                    ];
+
+                    if OVERRIDE_SIGNED.contains(&name) {
+                        Some(IntKind::Int)
+                    } else {
+                        None
+                    }
+                }
+            }
+
             fn bindings_builder() -> bindgen::Builder {
                 bindgen::Builder::default()
                     .header(header_path())
                     .default_enum_style(bindgen::EnumVariation::NewType{ is_bitfield : false })
+                    .parse_callbacks(Box::new(Callbacks))
                     .rustfmt_bindings(true)
                     .allowlist_function("ftdi_.*")
                     .allowlist_type("ftdi_.*")

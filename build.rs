@@ -86,6 +86,9 @@ fn main() {
                     .blocklist_type("libusb_.*")
                     .blocklist_type("__.*")
                     .raw_line("pub type timeval = libc::timeval;")
+                    // The following use too much macros to parse correctly, inject manually
+                    .raw_line("#[deprecated] pub const SIO_RESET_PURGE_RX: u32 = 1;")
+                    .raw_line("#[deprecated] pub const SIO_RESET_PURGE_TX: u32 = 2;")
             }
 
             let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());

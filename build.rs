@@ -49,9 +49,21 @@ fn main() {
             #[derive(Debug)]
             struct Callbacks;
 
-            use bindgen::callbacks::{IntKind, ParseCallbacks};
+            use bindgen::callbacks::{IntKind, MacroParsingBehavior, ParseCallbacks};
 
             impl ParseCallbacks for Callbacks {
+                fn will_parse_macro(&self, name: &str) -> MacroParsingBehavior {
+                    static OVERRIDE_IGNORE: &[&str] = &[
+                        "SIO_RESET_PURGE_RX",
+                        "SIO_RESET_PURGE_TX",
+                    ];
+
+                    if OVERRIDE_IGNORE.contains(&name) {
+                        MacroParsingBehavior::Ignore
+                    } else {
+                        MacroParsingBehavior::Default
+                    }
+                }
                 fn int_macro(&self, name: &str, _value: i64)-> Option<IntKind> {
                     static OVERRIDE_SIGNED: &[&str] = &[
                         "SIO_DISABLE_FLOW_CTRL",
@@ -86,7 +98,8 @@ fn main() {
                     .blocklist_type("libusb_.*")
                     .blocklist_type("__.*")
                     .raw_line("pub type timeval = libc::timeval;")
-                    // The following use too much macros to parse correctly, inject manually
+                    // The following use too much macros to parse correctly in libftdi 1.5
+                    // Inject manually, they're ignored in callbacks
                     .raw_line("#[deprecated] pub const SIO_RESET_PURGE_RX: u32 = 1;")
                     .raw_line("#[deprecated] pub const SIO_RESET_PURGE_TX: u32 = 2;")
             }

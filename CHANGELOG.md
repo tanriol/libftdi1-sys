@@ -1,3 +1,9 @@
+# 1.1.2 (2022-02-13)
+
+Changed:
+
+- allow `libusb1-sys` versions up to `0.6.*`
+
 # 1.1.1 (2021-08-12)
 
 Fixed:

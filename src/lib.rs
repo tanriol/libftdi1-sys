@@ -25,23 +25,27 @@ cfg_if::cfg_if! {
     if #[cfg(feature = "libusb1-sys")] {
         pub use libusb1_sys;
     } else {
-        /// Internal placeholders for `libusb` types. Do not use externally.
-        mod libusb1_sys {
+        /// Opaque placeholder types for `libusb` types.
+        pub mod libusb1_sys {
             #[repr(C)]
             pub struct libusb_transfer {
-                _address: u8,
+                _data: [u8; 0],
+                _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
             }
             #[repr(C)]
             pub struct libusb_context {
-                _address: u8,
+                _data: [u8; 0],
+                _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
             }
             #[repr(C)]
             pub struct libusb_device_handle {
-                _address: u8,
+                _data: [u8; 0],
+                _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
             }
             #[repr(C)]
             pub struct libusb_device {
-                _address: u8,
+                _data: [u8; 0],
+                _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
             }
         }
     }

@@ -1,3 +1,9 @@
+# 1.1.3 (2023-12-14)
+
+Changed:
+
+- use the rustonomicon-recommended extern type pattern without `libusb1-sys` (#19)
+
 # 1.1.2 (2022-02-13)
 
 Changed:

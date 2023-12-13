@@ -44,7 +44,7 @@ pkg-config = "0.3.7"
 vcpkg = "0.2"
 
 [build-dependencies.bindgen]
-version = "0.59"
+version = "0.65.1"
 optional = true
 
 [workspace]

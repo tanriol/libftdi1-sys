@@ -83,9 +83,11 @@ fn main() {
             fn bindings_builder() -> bindgen::Builder {
                 bindgen::Builder::default()
                     .header(header_path())
-                    .default_enum_style(bindgen::EnumVariation::NewType{ is_bitfield : false })
+                    .default_enum_style(bindgen::EnumVariation::NewType {
+                        is_bitfield: false,
+                        is_global: false,
+                    })
                     .parse_callbacks(Box::new(Callbacks))
-                    .rustfmt_bindings(true)
                     .allowlist_function("ftdi_.*")
                     .allowlist_type("ftdi_.*")
                     .generate_comments(false)
